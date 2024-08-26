@@ -1,0 +1,138 @@
+.gridWrapper {
+  padding: 5vh 15vh;
+}
+.pagesWrapper {
+  height: 5vh;
+}
+
+.shopGrid {
+  display: grid;
+  gap: 3vh;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.shopItem {
+  border: 1px solid rgb(52, 65, 88);
+  /*
+  TITLE
+  IMG
+  BUY AND PRICE */
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: min-content 1fr min-content;
+  width: 35vh;
+  border-radius: 3vh;
+  border-top-left-radius: 2vh;
+  border-top-right-radius: 2vh;
+  box-shadow: 10px 10px 10px 3px rgba(8, 19, 33, 0.349);
+  overflow: hidden;
+}
+
+.imgContainer {
+  height: 35vh;
+  background-color:  rgb(99, 94, 88);
+}
+.shopImg {
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.buyWrapper, .itemTitle {
+}
+.itemTitle {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 2vh 4vh;
+  color: aliceblue;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: rgb(84, 88, 104);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.buyWrapper {
+  background-color: rgb(68, 84, 111);
+  display: flex;
+  padding: 2vh 5vh;
+  color: aliceblue;
+  justify-content: space-between;
+  align-items: baseline;
+  height: 6vh;
+  font-size: 1.5rem;
+
+
+}
+.price {
+  display: flex;
+  align-items: center;
+}
+.price > span {
+  color: rgb(87, 205, 63);
+  font-size: 0.9rem;
+
+}
+.buyItem {
+  width: 70%;
+  border: none;
+  border-radius: 2vh;
+  cursor: pointer;
+  padding: 1vh;
+  font-size: 1.1rem;
+  color: white;
+  background-color: rgb(11, 122, 173);
+  box-sizing: border-box;
+  transition: all 0.2s ease-out;
+}
+
+.buyItem:hover {
+  box-sizing: border-box;
+  background-color: gold;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 6px 3px white;
+}
+
+.incrementWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around ;
+  gap: 1vh;
+  font-size: 1.3rem;
+  width: 70%;
+  height: 100%;
+}
+
+.increase, .decrease {
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1vh;
+  padding: 0 2.2vh;
+  border: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width: 30%;
+  background-color: rgb(51, 51, 51);
+  transition: all 0.2s;
+}
+
+.decrease:hover {
+  background-color: red;
+  box-shadow: 0 0 6px 3px white;
+
+}
+.increase:hover {
+  background-color: rgb(24, 201, 35);
+  box-shadow: 0 0 5px 1px white;
+
+}
+
+
+
