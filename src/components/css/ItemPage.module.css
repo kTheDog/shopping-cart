@@ -43,7 +43,7 @@
   padding-left: 12vh;
   display: grid;
   grid-template-columns: min-content min-content;
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: min-content min-content 1fr;
   gap: 20px;
   grid-template-areas:
   'title title'
@@ -58,7 +58,7 @@
 .itemImage {
   height: 60vh;
 }
-.buy {
+.buySection {
   grid-area: buy;
   align-self: start;
 }
@@ -74,4 +74,47 @@
   color: aliceblue;
   padding: 3vh;
   align-self: start;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
 }
+
+
+.tagsWrapper {
+  display: flex;
+  gap: 3vh;
+  flex: 1;
+}
+
+
+.stock, .stars {
+  display: flex;
+  align-items: center;
+  background-color: rgb(133, 242, 0);
+  padding: 0.8vh 2vh;
+  border-radius: 3vh;
+  color: white;
+  box-sizing: border-box;
+  border: 1px solid rgb(246, 255, 231);
+  box-shadow: 6px 6px 6px 2px rgb(141, 142, 147);
+}
+
+.stars {
+  display: block;
+  background-color: rgb(138, 177, 115);
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 0.8vh 3.5vh;
+}
+
+.stars > img {
+  margin-left: 0.1vh;
+  height: 1.1rem;
+}
+
+.buy {
+  display: block;
+  margin-top: 5vh;
+  background-color: black;
+}
+
+

@@ -1,10 +1,24 @@
 import { useParams } from "react-router-dom";
 import styles from '../css/ItemPage.module.css'
+import starIcon from '../../assets/star.svg'
+import stockIcon from '../../assets/box.svg'
 import { useState } from "react";
 
 export default function ItemPage (props) {
   const {category, description, id, price, rating, title, images} = props.data
-  const {itemImage, imgWrapper, itemPageWrapper, imgSlider, descriptionWrapper, itemTitle, buy} = styles
+  const {
+          itemImage,
+          imgWrapper,
+          itemPageWrapper,
+          imgSlider,
+          descriptionWrapper,
+          itemTitle,
+          buy,
+          buySection,
+          stock,
+          stars,
+          tagsWrapper
+        } = styles
 
   const imgAmount = images.length
   const [currentImg, setCurrentImg] = useState(0)
@@ -49,8 +63,19 @@ export default function ItemPage (props) {
       <div className={descriptionWrapper}>
         {description}
       </div>
-      <div className={buy}>
-        <button>Add to cart</button>
+      <div className={buySection}>
+        <div className={tagsWrapper}>
+          <div className={stars}>
+            <span>{rating}</span>
+            <img src={starIcon} alt="" />
+          </div>
+          <div className={stock}>
+            <img src={stockIcon} alt="" />
+            <span>In stock</span>
+          </div>
+        </div>
+
+        <button className={buy}>Add to cart</button>
       </div>
     </div>
   )

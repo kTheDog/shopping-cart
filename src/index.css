@@ -8,3 +8,8 @@ body {
 
 body, #root, .app {
 }
+
+
+img {
+  height: 2rem;
+}
