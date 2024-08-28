@@ -12,7 +12,7 @@ export default function Cart({fetchState, cartState}) {
     let list = []
     for (let itemID in cart) {
       console.log(itemID)
-      let element = <CartItem key={itemID}data={data[itemID-1]} cartState={cartState}></CartItem>
+      let element = <CartItem key={itemID}data={data[itemID]} cartState={cartState}></CartItem>
       list.push(element)
     }
     return list

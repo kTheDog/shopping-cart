@@ -12,19 +12,18 @@ import useGetWelcomeImages from "./welcome/useGetWelcomeImages"
 export default function App() {
 
   const {pageName} = useParams()
-  const {data, loading, error} = useGetData()
-  const getWelcomeImages = useGetWelcomeImages()
-  console.log(getWelcomeImages)
+  const getShopData= useGetData()
+  const getWelcomeData = useGetWelcomeImages()
   const [cart, setCart] = useState({})
   // cart : {itemID: amount}
   function bodyComponent() {
     switch (pageName) {
       case undefined:
-        return <Welcome fetchState= {getWelcomeImages}></Welcome>
+        return <Welcome fetchState= {getWelcomeData}></Welcome>
       case 'shop':
-        return <ShopMain fetchState = {{data, loading, error}} cartState={{cart, setCart}}></ShopMain>
+        return <ShopMain fetchState = {getShopData} cartState={{cart, setCart}}></ShopMain>
       case 'cart':
-        return <Cart fetchState= {{data, loading, error}} cartState={{cart, setCart}}></Cart>
+        return <Cart fetchState= {getShopData} cartState={{cart, setCart}}></Cart>
     }
   }
 
