@@ -2,10 +2,13 @@ import { useParams } from "react-router-dom";
 import styles from '../css/ItemPage.module.css'
 import starIcon from '../../assets/star.svg'
 import stockIcon from '../../assets/box.svg'
+import cartIcon from '../../assets/cart2.svg'
+import IncrementBuy from "./IncrementBuy";
 import { useState } from "react";
 
 export default function ItemPage (props) {
   const {category, description, id, price, rating, title, images} = props.data
+  const {cart, setCart} = props.cartState
   const {
           itemImage,
           imgWrapper,
@@ -22,9 +25,11 @@ export default function ItemPage (props) {
 
   const imgAmount = images.length
   const [currentImg, setCurrentImg] = useState(0)
-  console.log(rating)
+  const amountInCart = cart[id]
+  function inCart () {
+    return amountInCart > 0
+  }
 
-  console.log(props)
 
   function nextImg () {
     if (currentImg == imgAmount - 1) {
@@ -55,10 +60,10 @@ export default function ItemPage (props) {
       <h2 className={itemTitle}>{title}</h2>
       <div className={imgWrapper}>
         <img className={itemImage} src={images[currentImg]}></img>
-        <div className={imgSlider}>
-          <button onClick={prevImg}>Prev</button>
-          <button onClick={nextImg}>Next</button>
-        </div>
+      </div>
+      <div className={imgSlider}>
+        <button onClick={prevImg}>Prev</button>
+        <button onClick={nextImg}>Next</button>
       </div>
       <div className={descriptionWrapper}>
         {description}
@@ -75,7 +80,11 @@ export default function ItemPage (props) {
           </div>
         </div>
 
-        <button className={buy}>Add to cart</button>
+        <div className={buy}>
+          <img src={cartIcon} alt="" />
+          {/* {inCart() ? <IncrementBuy theme = {styles} id = {id} cartState={props.cartState}></IncrementBuy> : buyButton} */}
+          <IncrementBuy theme = {styles} id = {id} cartState={props.cartState}></IncrementBuy>
+        </div>
       </div>
     </div>
   )

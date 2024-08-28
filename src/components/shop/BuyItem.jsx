@@ -1,6 +1,6 @@
 import styles from '../css/ItemList.module.css'
 import propTypes from 'prop-types'
-
+import IncrementBuy from './IncrementBuy'
 export default function BuyItem (props) {
 
   const {buyItem, incrementWrapper, increase, decrease} = styles
@@ -17,32 +17,10 @@ export default function BuyItem (props) {
     setCart(oldCart => Object.assign({}, oldCart, newProperty))
   }
 
-  function increaseAmount() {
-    let newProperty = {[data.id]: (amountInCart || 0) + 1}
+  let buyButton = <button className={buyItem} onClick={handleBuy}>{props.buyText || 'Add'}</button>
 
-    setCart(oldCart => Object.assign({}, oldCart, newProperty))
-  }
-  function decreaseAmount() {
-    if(amountInCart <= 0) {throw new Error('Not supposed to happen')}
-
-    let newProperty = {[data.id]: amountInCart - 1}
-
-    setCart(oldCart => Object.assign({}, oldCart, newProperty))
-  }
-
-  let buyButton = <button className={buyItem} onClick={handleBuy}>Add to cart</button>
-
-  let incrementField = () => {
-    return (
-      <div className={incrementWrapper}>
-        <button className={decrease} onClick={decreaseAmount}>-</button>
-        {amountInCart}
-        <button className={increase} onClick={increaseAmount}>+</button>
-      </div>
-    )
-  }
-
-  return inCart() ? incrementField() : buyButton
+  let increment = <IncrementBuy theme={styles} id = {data.id} cartState={props.cartState}></IncrementBuy>
+  return inCart() ? increment : buyButton
 
 }
 

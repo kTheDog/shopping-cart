@@ -49,12 +49,11 @@ a {
 .navButton img {
   height: 10vh;
   filter: hue-rotate(0deg);
-  transform: translateX(1);
   transition: all 0.3s;
 
 }
 .selected img {
-  transform: scaleX(1.3) scaleY(1.3) ;
+  animation: growShrink 0.3s cubic-bezier(0, 0.99, 0.77, 0.98);
 }
 
 .navBar span {
@@ -92,5 +91,15 @@ a {
   100% {
     background-image: none;
     background-position: 200px;
+  }
+}
+
+@keyframes growShrink {
+  0%, 100% {
+  transform: scaleX(1) scaleY(1) ;
+  }
+
+  50% {
+    transform: scaleX(1.1) scaleY(1.1) ;
   }
 }

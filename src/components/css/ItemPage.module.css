@@ -37,18 +37,31 @@
     display: none
   }
 }
+:root {
+  --buy-color: gold
 
-
+}
+.d {
+  background-color: rgb(84, 75, 170);
+}
+.shine {
+  overflow: hidden;
+}
+.imgSlider {
+  grid-area: slider;
+  justify-self: center;
+}
 .itemPageWrapper {
   padding-left: 12vh;
   display: grid;
   grid-template-columns: min-content min-content;
-  grid-template-rows: min-content min-content 1fr;
-  gap: 20px;
+  grid-template-rows: min-content min-content min-content min-content;
+  gap: 0 3vh ;
   grid-template-areas:
   'title title'
   'image description'
   'image buy'
+  'slider none'
 
 }
 
@@ -56,17 +69,18 @@
   grid-area: title;
 }
 .itemImage {
-  height: 60vh;
+  height: 68vh;
 }
 .buySection {
   grid-area: buy;
-  align-self: start;
+  align-self: flex-end;
 }
 
 .imgWrapper {
   overflow: hidden;
   width: 100%;
   grid-area: image;
+  display: flex;
 }
 .descriptionWrapper {
   width: 50ch;
@@ -83,6 +97,7 @@
   display: flex;
   gap: 3vh;
   flex: 1;
+  margin-bottom: 16vh;
 }
 
 
@@ -112,9 +127,103 @@
 }
 
 .buy {
-  display: block;
-  margin-top: 5vh;
-  background-color: black;
+  composes: shine;
+  display: flex;
+  align-items: center;
+  padding: 3vh 3vh 3vh 2.5vh;
+  align-self: end;
+  font-size: 3rem;
+  background-color: var(--buy-color);
+  position: relative;
+  gap: 5vh;
+}
+.shine > * {
+  position: relative;
+  z-index: 5;
+}
+
+.buy > img {
+  height: 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.shine::after {
+  content: '';
+  color: red;
+  z-index: 1;
+  width: 60%;
+  height: 300%;
+  left: 0;
+  background-image: linear-gradient(to right,var(--buy-color), rgb(255, 255, 255)30%, var(--buy-color)60%);
+  position: absolute;
+  animation: moveShine 4s ease infinite none;
+  transform: rotateZ(30deg);
 }
 
 
+@keyframes moveShine {
+  0%{
+    left: -50%;
+    display: block;
+  }
+  80% {
+    left: 100%;
+    display: none;
+  }
+  100% {
+
+    left: 100%
+  }
+
+
+}
+
+
+.buyItem {
+  height: 4rem;
+  font-size: 2rem;
+  background-color: transparent;
+  border-radius: 10vh;
+  padding: 1vh 6vh;
+  transition: 0.3s;
+  width: 18vw;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.buyItem:hover {
+  transform: scaleX(1.04) scaleY(1.04);
+  cursor: pointer;
+  color: gold;
+  background-color: rgb(64, 70, 80);
+  box-shadow: 6px 6px 18px 10px rgba(255, 255, 255, 0.67);
+  position: relative;
+
+}
+
+.incrementWrapper {
+  height: 4rem;
+  font-size: 2.5rem;
+  width: 18vw;
+  display: flex;
+  color: gold;
+  background-color: rgb(64, 70, 80);
+  box-shadow: 6px 6px 18px 10px rgba(255, 255, 255, 0.67);
+  justify-content: space-evenly;
+  padding: 0vh 6vh;
+  box-sizing: border-box;
+  border-radius: 10vh;
+  align-items: center;
+
+}
+
+
+.increase, .decrease {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3vh;
+  font-size: 2rem;
+  padding: 0 2vh;
+  box-sizing: border-box;
+}
