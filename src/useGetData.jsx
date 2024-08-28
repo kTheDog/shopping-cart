@@ -33,12 +33,15 @@ const useGetData = () => {
 
       let data = await response.json()
       console.log(data)
+      let idCorrecter = 0
       let newData = await Promise.all(data.map(async (instance) => {
         let rating = Math.random(instance.id) * 1.5 + 3.5
         rating = rating.toFixed(1)
         let imageLinks = instance.images
         let urls = await getUrls(imageLinks)
-        return Object.assign({}, instance, {images: urls, rating})
+        let newProperties = {images: urls, rating, id: idCorrecter}
+        idCorrecter += 1
+        return Object.assign({}, instance, newProperties)
       }))
 
 

@@ -10,7 +10,7 @@ export default function ShopItem (props) {
   const {data} = props
   const {cart, setCart} = props.cartState
   const {shopItem, shopImg, itemTitle, buyItem, price, imgContainer, buyWrapper} = styles
-
+  console.log(data.id)
   function imgElement() {
 
     let imgStyle = {backgroundImage : `url("${data.images[0]}")`}

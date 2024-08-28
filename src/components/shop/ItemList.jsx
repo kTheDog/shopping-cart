@@ -9,7 +9,7 @@ export default function ItemList (props) {
   const {shopGrid, gridWrapper, pagesWrapper} = styles
   const [page, setPage] = useState(1)
 
-  console.log()
+  console.log(data)
   function currentPageItems () {
     const itemsPerPage = 18
 
@@ -23,7 +23,12 @@ export default function ItemList (props) {
 
   }
 
-
+  function scrollToTop () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
   function list () {
 
     let list = currentPageItems().map((instance) => {
@@ -44,9 +49,9 @@ export default function ItemList (props) {
         {list()}
       </div>
       <div className={pagesWrapper}>
-        <button onClick={() => {setPage(1)}}>1</button>
-        <button onClick={() => {setPage(2)}}>2</button>
-        <button onClick={() => {setPage(3)}}>3</button>
+        <button onClick={() => {setPage(1); scrollToTop()}}>1</button>
+        <button onClick={() => {setPage(2); scrollToTop()}}>2</button>
+        <button onClick={() => {setPage(3); scrollToTop()}}>3</button>
       </div>
     </div>
   )

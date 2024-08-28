@@ -30,7 +30,7 @@ export default function ItemPage (props) {
     return amountInCart > 0
   }
 
-
+  console.log(id)
   function nextImg () {
     if (currentImg == imgAmount - 1) {
       setCurrentImg(0)

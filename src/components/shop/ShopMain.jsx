@@ -25,13 +25,13 @@ export default function ShopMain(props) {
       </div>
     )
   }
-
+  console.log(itemID)
 
   return (
     <>
       {
         itemID ?
-        <ItemPage data={data[itemID-1]} cartState={props.cartState}></ItemPage>
+        <ItemPage data={data[itemID]} cartState={props.cartState}></ItemPage>
          :
         <ItemList fetchState={props.fetchState} cartState={props.cartState}></ItemList>
       }

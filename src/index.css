@@ -2,7 +2,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: aliceblue;
+  background-color: rgb(26, 25, 25);
+  /* background-color: rgb(246, 246, 246); */
 }
 
 

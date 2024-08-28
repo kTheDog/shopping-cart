@@ -1,3 +1,5 @@
+import plusIcon from '../../assets/plus.svg'
+import minusIcon from '../../assets/minus.svg'
 
 export default function IncrementBuy ({id, cartState, theme, buyText}) {
   let {cart, setCart} = cartState
@@ -23,15 +25,18 @@ export default function IncrementBuy ({id, cartState, theme, buyText}) {
     setCart(oldCart => Object.assign({}, oldCart, newProperty))
   }
 
-  console.log(theme)
 
   const increment = () => {
     return (
 
       <div className={theme.incrementWrapper}>
-        <button className={theme.decrease} onClick={decreaseAmount}>-</button>
+        <button className={theme.decrease} onClick={decreaseAmount}>
+          <img src={minusIcon} alt="" />
+        </button>
         {amountInCart}
-        <button className={theme.increase} onClick={increaseAmount}>+</button>
+        <button className={theme.increase} onClick={increaseAmount}>
+          <img src={plusIcon} alt="" />
+        </button>
       </div>
     )
   }
