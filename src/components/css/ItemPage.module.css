@@ -53,16 +53,17 @@
 }
 .itemPageWrapper {
   padding-left: 12vh;
+
   display: grid;
   grid-template-columns: min-content min-content;
-  grid-template-rows: min-content min-content min-content min-content;
-  gap: 0 3vh ;
+  grid-template-rows: min-content auto min-content min-content;
+  gap: 3vh 3vh ;
   grid-template-areas:
   'title title'
   'image description'
   'image buy'
-  'slider none'
-
+  'slider none';
+  height: min-content;
 }
 
 .itemTitle {
@@ -73,7 +74,8 @@
 }
 .buySection {
   grid-area: buy;
-  align-self: flex-end;
+  display: grid;
+  align-items: start;
 }
 
 .imgWrapper {
@@ -97,7 +99,6 @@
   display: flex;
   gap: 3vh;
   flex: 1;
-  margin-bottom: 16vh;
 }
 
 

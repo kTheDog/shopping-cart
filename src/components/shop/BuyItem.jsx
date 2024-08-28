@@ -1,8 +1,7 @@
 import styles from '../css/ItemList.module.css'
 import propTypes from 'prop-types'
 import IncrementBuy from './IncrementBuy'
-import plusIcon from '../../assets/plus.svg'
-import minusIcon from '../../assets/minus.svg'
+
 export default function BuyItem (props) {
 
   const {buyItem, incrementWrapper, increase, decrease} = styles
