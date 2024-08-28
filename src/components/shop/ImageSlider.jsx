@@ -1,5 +1,8 @@
 import styles from '../css/ItemPage.module.css'
 import { useState, useEffect } from 'react'
+import arrowLeft from '../../assets/arrow1.svg'
+import arrowRight from '../../assets/arrow2.svg'
+
 const {
   itemImage,
   imgWrapper,
@@ -60,8 +63,12 @@ export default function ImageSlider ({images}) {
         <img className={itemImage} key={currentImg}src={images[currentImg]}></img>
       </div>
       <div className={imgSlider}>
-        <button onClick={prevImg}>Prev</button>
-        <button onClick={() => {setCurrentImg((old) => nextImg(old))}}>Next</button>
+        <button onClick={prevImg}>
+          <img src={arrowLeft} alt="" />
+        </button>
+        <button onClick={() => {setCurrentImg((old) => nextImg(old))}}>
+          <img src={arrowRight} alt="" />
+        </button>
       </div>
     </>
   )

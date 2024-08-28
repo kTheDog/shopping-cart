@@ -32,7 +32,6 @@ export default function ItemPage (props) {
       <div className={descriptionWrapper}>
         {description}
       </div>
-
       <div className={buySection}>
         <div className={tagsWrapper}>
           <div className={stars}>

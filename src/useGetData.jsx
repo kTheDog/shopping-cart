@@ -16,6 +16,19 @@ const getUrls = async (imgLinks) => {
   )
   return urls
 }
+const randomRating = () => {
+  let rate = Math.random() * 1.5 + 3.5
+  return rate.toFixed(1)
+}
+const fixIDs = objArray => {
+  let correcter = 0
+  let newArray = objArray.map((obj) => {
+    obj = Object.assign({}, obj, {id: correcter})
+    correcter += 1
+    return obj
+  })
+  return newArray
+}
 
 const useGetData = () => {
   const [loading, setLoading] = useState(true)
@@ -26,27 +39,20 @@ const useGetData = () => {
 
     let fetchData = async () => {
 
-      // let response = await fetch('https://fakestoreapi.com/products')
       let response = await fetch('https://api.escuelajs.co/api/v1/products?offset=1&limit=48')
       console.log(response)
-      if (response.status >= 400) {setError(error); throw new Error('Network error... Couldn\'t fetch')}
+      if (response.status >= 400) {setError('error'); throw new Error('Network error... Couldn\'t fetch')}
 
-      let data = await response.json()
+      let rawObjects = await response.json()
       console.log(data)
-      let idCorrecter = 0
-      let newData = await Promise.all(data.map(async (instance) => {
-        let rating = Math.random(instance.id) * 1.5 + 3.5
-        rating = rating.toFixed(1)
-        let imageLinks = instance.images
-        let urls = await getUrls(imageLinks)
-        let newProperties = {images: urls, rating, id: idCorrecter}
-        idCorrecter += 1
+      let transformedData = await Promise.all(rawObjects.map(async (instance) => {
+        let urls = await getUrls(instance.images)
+        let rating = randomRating()
+        let newProperties = {images: urls, rating}
         return Object.assign({}, instance, newProperties)
       }))
-
-
-
-      setData(newData)
+      let fixedIDs = fixIDs(transformedData)
+      setData(fixedIDs)
       setLoading(false)
     }
 

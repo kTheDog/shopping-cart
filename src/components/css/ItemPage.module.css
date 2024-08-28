@@ -60,6 +60,7 @@
 .imgSlider {
   grid-area: slider;
   justify-self: center;
+
 }
 .itemPageWrapper {
   padding-left: 12vh;

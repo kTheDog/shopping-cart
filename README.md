@@ -11,3 +11,4 @@ To do:
 2. Make navbar look good
 3. Make cart page
 4. Make changing pages in the shop look good
+5. Correct
