@@ -4,7 +4,7 @@ import { useState } from "react"
 import Cart from "./cart/Cart"
 import useGetData from "../useGetData"
 import NavBar from "./NavBar"
-import Welcome from "./Welcome"
+import Welcome from "./welcome/Welcome"
 import styles from "./css/App.module.css"
 
 export default function App() {

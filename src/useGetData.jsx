@@ -40,11 +40,8 @@ const useGetData = () => {
     let fetchData = async () => {
 
       let response = await fetch('https://api.escuelajs.co/api/v1/products?offset=1&limit=48')
-      console.log(response)
-      if (response.status >= 400) {setError('error'); throw new Error('Network error... Couldn\'t fetch')}
-
+      if (response.status >= 400) { throw new Error('Network error... Couldn\'t fetch')}
       let rawObjects = await response.json()
-      console.log(data)
       let transformedData = await Promise.all(rawObjects.map(async (instance) => {
         let urls = await getUrls(instance.images)
         let rating = randomRating()
