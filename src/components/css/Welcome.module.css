@@ -1,0 +1,47 @@
+@keyframes fromRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.displaySection {
+  display: grid;
+  grid-auto-flow: column;
+
+}
+
+.imagesWrapper {
+  margin: 5vh 0 0 40vh;
+  height: 30vh;
+  display: grid;
+  width: min-content;
+  grid-template-columns: 0 max-content 0;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid red;
+  overflow: hidden;
+
+}
+.sliderImg {
+  height: 20vh;
+  aspect-ratio: 1 / 1;
+  background-color: white;
+  color: black;
+  animation: fromRight 3s ;
+  animation-timing-function: ease-out;
+}
+.sliderImg > img {
+  height: inherit;
+}
+.slide {
+  composes: imagesWrapper;
+
+}
+
+
+.currentImg {
+  compose: sliderImg;
+}
