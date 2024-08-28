@@ -4,7 +4,7 @@ import starIcon from '../../assets/star.svg'
 import stockIcon from '../../assets/box.svg'
 import cartIcon from '../../assets/cart2.svg'
 import IncrementBuy from "./IncrementBuy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ItemPage (props) {
   const {category, description, id, price, rating, title, images} = props.data
@@ -29,19 +29,28 @@ export default function ItemPage (props) {
   function inCart () {
     return amountInCart > 0
   }
+  useEffect(() => {
+    const ref = setInterval(() => {
+      setCurrentImg(old => nextImg(old))
+    }, 4000)
 
-  console.log(id)
-  function nextImg () {
+    return () => clearInterval(ref)
+  },[])
+  function nextImg (currentImg) {
+    let newImg = 0
+    console.log(currentImg)
     if (currentImg == imgAmount - 1) {
-      setCurrentImg(0)
+      newImg = 0
     } else
     if (currentImg < imgAmount -1){
-      setCurrentImg(img => img + 1)
+      newImg = currentImg + 1
     }
     //on currentImg: slide to left, make display none !!disapearToLeft
     //on newImg: slide in from right, make display visible
-    return
+    return newImg
   }
+  console.log(currentImg, imgAmount)
+
   function prevImg () {
     let newImg = -1
     if (currentImg == 0) {
@@ -59,11 +68,11 @@ export default function ItemPage (props) {
     <div className={itemPageWrapper}>
       <h2 className={itemTitle}>{title}</h2>
       <div className={imgWrapper}>
-        <img className={itemImage} src={images[currentImg]}></img>
+        <img className={itemImage} key={currentImg}src={images[currentImg]}></img>
       </div>
       <div className={imgSlider}>
         <button onClick={prevImg}>Prev</button>
-        <button onClick={nextImg}>Next</button>
+        <button onClick={() => {setCurrentImg((old) => nextImg(old))}}>Next</button>
       </div>
       <div className={descriptionWrapper}>
         {description}

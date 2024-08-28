@@ -37,6 +37,16 @@
     display: none
   }
 }
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 :root {
   --buy-color: gold
 
@@ -83,6 +93,13 @@
   width: 100%;
   grid-area: image;
   display: flex;
+
+}
+
+
+.imgWrapper > img {
+
+  animation: fadeIn 1.5s;
 }
 .descriptionWrapper {
   width: 50ch;
