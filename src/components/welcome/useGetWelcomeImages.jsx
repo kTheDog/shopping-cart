@@ -3,12 +3,6 @@ import { useEffect, useState } from "react"
 const categoriesLink = 'https://api.escuelajs.co/api/v1/categories?limit=5'
 
 
-const fetchData = async() => {
-  const request = await fetch(categoriesLink)
-
-  if (request.status >= 400) {throw new Error('Network error... Couldn\'t fetch')}
-
-}
 const getImgUrl = async (link) => {
 
   let request = await fetch (link)
@@ -27,7 +21,6 @@ const useGetWelcomeImages = () => {
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
 
-  const request = fetch(categoriesLink)
 
   useEffect(() => {
 

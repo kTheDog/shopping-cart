@@ -1,13 +1,9 @@
-import useGetWelcomeImages from "./useGetWelcomeImages"
 
 
-export default function Welcome() {
+export default function Welcome(props) {
 
-
-  const {data, error, loading} = useGetWelcomeImages()
-
+  let {data, error, loading} = props.fetchState
   if (loading) {return <div>Loading...</div>}
-  console.log(data[0], error,loading)
 
 
   return (
