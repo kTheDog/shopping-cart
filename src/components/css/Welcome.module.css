@@ -1,47 +1,98 @@
-@keyframes fromRight {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.sliderWrapper {
+  --img-height: 20vh;
+  --curr-height: 40vh;
+  --a-dur: 1s;
+  --t-func: cubic-bezier(0.01, 0.99, 1, 1);
+}
+.sliderWrapper {
+  display: grid;
+  grid-template-columns: 0 repeat(3, min-content) 0;
+  overflow: hidden;
+  align-items: center;
+  height: 60vh;
 }
 
 .displaySection {
-  display: grid;
-  grid-auto-flow: column;
-
-}
-
-.imagesWrapper {
-  margin: 5vh 0 0 40vh;
-  height: 30vh;
-  display: grid;
+  display: flex;
+  border: 3px solid black ;
   width: min-content;
-  grid-template-columns: 0 max-content 0;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid red;
-  overflow: hidden;
-
 }
 .sliderImg {
-  height: 20vh;
-  aspect-ratio: 1 / 1;
-  background-color: white;
-  color: black;
-  animation: fromRight 3s ;
-  animation-timing-function: ease-out;
+  height: var(--img-height);
+
 }
-.sliderImg > img {
+.sliderImg img {
   height: inherit;
 }
-.slide {
-  composes: imagesWrapper;
+.currentImg {
 
 }
 
+/* Animations */
 
-.currentImg {
-  compose: sliderImg;
+
+
+@keyframes displaySlide {
+  0% {
+    position: relative;
+    right: 20vh;
+  }
+  100% {
+    right: 0;
+    position: relative;
+
+  }
+}
+@keyframes grow {
+  0% {
+    height: var(--img-height);
+  }
+  100% {
+    height: var(--curr-height);
+  box-shadow: 0 10px 10px 10px black;
+
+  }
+}
+
+@keyframes shrink {
+  0% {
+  box-shadow: 0 10px 10px 10px black;
+
+    height: var(--curr-height);
+
+  }
+  100% {
+    height: 20vh;
+    box-sizing: 0 0 0 0;
+
+  }
+}
+
+.slideRight {
+  composes: sliderImg;
+  animation: displaySlide var(--a-dur) forwards var(--t-func);
+}
+
+.growRight {
+  composes: sliderImg;
+  animation: growRight var(--a-dur) forwards;
+  animation: displaySlide var(--a-dur) forwards var(--t-func) , grow var(--a-dur) forwards var(--t-func);
+  z-index: 3;
+}
+
+.shrinkRight {
+  composes: sliderImg;
+  animation: shrinkRight var(--a-dur);
+  animation: displaySlide var(--a-dur) forwards var(--t-func), shrink var(--a-dur) forwards var(--t-func);
+  z-index: 2;
+}
+
+.sliderWrapper {
+
+}
+
+.wrapper {
+  width: min-content;
+  margin-left: 40vh;
+
 }

@@ -12,3 +12,9 @@ To do:
 3. Make cart page
 4. Make changing pages in the shop look good
 5. Correct
+
+
+// Image slider
+
+each img div will have a class from classArray
+and each img element will have a src from srcArray
