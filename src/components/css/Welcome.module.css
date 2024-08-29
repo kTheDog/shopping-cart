@@ -1,98 +1,128 @@
-.sliderWrapper {
-  --img-height: 20vh;
-  --curr-height: 40vh;
+.wrap {
+  --small-height: 10vh;
+  --norm-height: 20vh;
+  --big-height: 40vh;
   --a-dur: 1s;
   --t-func: cubic-bezier(0.01, 0.99, 1, 1);
+    width: min-content;
 }
-.sliderWrapper {
+
+.allImgWrapper {
   display: grid;
-  grid-template-columns: 0 repeat(3, min-content) 0;
+  grid-template-columns: 0 repeat(5, min-content) 0;
+  border: 3px solid yellow;
   overflow: hidden;
   align-items: center;
-  height: 60vh;
+  height: var(--big-height);
 }
 
-.displaySection {
-  display: flex;
-  border: 3px solid black ;
-  width: min-content;
+.allImgWrapper > * {
+  height: var(--norm-height);
 }
-.sliderImg {
-  height: var(--img-height);
 
-}
-.sliderImg img {
+.allImgWrapper img {
   height: inherit;
+  width: inherit;
 }
-.currentImg {
 
+.imageWrapper {
+  height: var(--small-height);
+  position: relative;
+  border: 1px solid black;
+  box-sizing: border-box;
+  animation-fill-mode: forwards;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /* Animations */
-
-
-
-@keyframes displaySlide {
+@keyframes slideRight {
   0% {
-    position: relative;
-    right: 20vh;
+    right: var(--small-height);
   }
   100% {
     right: 0;
-    position: relative;
-
   }
 }
-@keyframes grow {
+@keyframes slideLeft {
   0% {
-    height: var(--img-height);
+    left: var(--small-height);
+  }
+}
+@keyframes growNorm {
+  0% {
+    height: var(--small-height);
   }
   100% {
-    height: var(--curr-height);
-  box-shadow: 0 10px 10px 10px black;
-
+    height: var(--norm-height);
   }
 }
-
-@keyframes shrink {
+@keyframes growBig {
   0% {
-  box-shadow: 0 10px 10px 10px black;
-
-    height: var(--curr-height);
-
+    height: var(--norm-height);
   }
   100% {
-    height: 20vh;
-    box-sizing: 0 0 0 0;
-
+    height: var(--big-height);
   }
 }
+
+@keyFrames shrinkBig {
+  0% {
+    height: var(--big-height);
+  }
+  100% {
+    height: var(--norm-height);
+  }
+}
+@keyframes shrinkNorm {
+  0% {
+    height: var(--norm-height);
+  }
+  100% {
+    height: var(--small-height);
+  }
+}
+
+.growRightNorm {
+  animation: growNorm var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+
+}
+.growLeftNorm {
+  animation: growNorm var(--a-dur) var(--t-func) forwards, slideLeft var(--a-dur) var(--t-func) forwards ;
+}
+.growRightBig {
+  animation: growBig var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+}
+.growLeftBig {
+  animation: growBig var(--a-dur) var(--t-func) forwards, slideLeft var(--a-dur) var(--t-func)  forwards;
+}
+
+.shrinkRightNorm {
+  animation: shrinkNorm var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+}
+.shrinkLeftNorm {
+  animation: shrinkNorm var(--a-dur var(--t-func)) forwards, slideLeft var(--a-dur) var(--t-func) forwards;
+}
+.shrinkRightBig {
+  animation: shrinkBig var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+}
+.shrinkLefttBig {
+  animation: shrinkBig var(--a-dur var(--t-func)) forwards, slideLeft var(--a-dur) var(--t-func) forwards;
+}
+
 
 .slideRight {
-  composes: sliderImg;
-  animation: displaySlide var(--a-dur) forwards var(--t-func);
+  animation: slideRight var(--a-dur) var(--t-func) forwards;
 }
-
-.growRight {
-  composes: sliderImg;
-  animation: growRight var(--a-dur) forwards;
-  animation: displaySlide var(--a-dur) forwards var(--t-func) , grow var(--a-dur) forwards var(--t-func);
-  z-index: 3;
-}
-
-.shrinkRight {
-  composes: sliderImg;
-  animation: shrinkRight var(--a-dur);
-  animation: displaySlide var(--a-dur) forwards var(--t-func), shrink var(--a-dur) forwards var(--t-func);
-  z-index: 2;
-}
-
-.sliderWrapper {
-
-}
-
-.wrapper {
-  width: min-content;
-  margin-left: 40vh;
-
+.slideLeft {
+  animation: slideRight var(--a-dur) var(--t-func) forwards;
 }
