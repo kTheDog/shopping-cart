@@ -3,14 +3,16 @@
   --norm-height: 20vh;
   --big-height: 40vh;
   --a-dur: 1s;
-  --t-func: cubic-bezier(0.01, 0.99, 1, 1);
+  --t-func: cubic-bezier(0.19, 0.75, 1, 1);
+  --marg: -2vh;
     width: min-content;
 }
 
 .allImgWrapper {
   display: grid;
-  grid-template-columns: 0 repeat(5, min-content) 0;
+  grid-template-columns: 0 repeat(5, max-content) 0;
   border: 3px solid yellow;
+  box-sizing: border-box;
   overflow: hidden;
   align-items: center;
   height: var(--big-height);
@@ -31,12 +33,17 @@
   border: 1px solid black;
   box-sizing: border-box;
   animation-fill-mode: forwards;
+  margin: 0 var(--marg);
+  right: 0;
+  transition: right 2s;
+  position: relative;
 }
 
 
-
-
-
+.testSlide {
+  position: relative;
+  right: -40vh;
+}
 
 
 
@@ -47,7 +54,7 @@
 /* Animations */
 @keyframes slideRight {
   0% {
-    right: var(--small-height);
+    right: calc(var(--small-height) + 2*  var(--marg));
   }
   100% {
     right: 0;

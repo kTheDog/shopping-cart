@@ -51,7 +51,7 @@ export default function ImageSlider(props) {
       for (let i in classes) {
         i = i + ` ` + imageWrapper
       }
-      classes = classes.map(c => {return c + ` ` + imageWrapper})
+      classes = classes.map(c => {return  theme.testSlide + ` ` + ` ` + imageWrapper })
     }
     return classes
   }
