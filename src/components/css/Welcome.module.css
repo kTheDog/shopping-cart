@@ -1,59 +1,24 @@
 .wrap {
-  --small-height: 10vh;
-  --norm-height: 20vh;
-  --big-height: 40vh;
-  --a-dur: 1s;
+  --small-height: 15vh;
+  --norm-height: 30vh;
+  --big-height: 60vh;
+  --a-dur: 8s;
   --t-func: cubic-bezier(0.19, 0.75, 1, 1);
   --marg: -2vh;
+  --dist: calc(var(--small-height) + var(--marg) * 2);
     width: min-content;
+    margin-left: 25vh;
 }
 
-.allImgWrapper {
-  display: grid;
-  grid-template-columns: 0 repeat(5, max-content) 0;
-  border: 3px solid yellow;
-  box-sizing: border-box;
-  overflow: hidden;
-  align-items: center;
-  height: var(--big-height);
-}
+/*
+Tech:
+apply growth animation  class to wrapper of imgs
+Apply sliding animation class to imgs inside wrapper
 
-.allImgWrapper > * {
-  height: var(--norm-height);
-}
-
-.allImgWrapper img {
-  height: inherit;
-  width: inherit;
-}
-
-.imageWrapper {
-  height: var(--small-height);
-  position: relative;
-  border: 1px solid black;
-  box-sizing: border-box;
-  animation-fill-mode: forwards;
-  margin: 0 var(--marg);
-  right: 0;
-  transition: height 2s;
-  position: relative;
-}
-
-
-.test {
-  height: 40vh;
-}
-
-
-
-
-
-
-
-/* Animations */
+*/
 @keyframes slideRight {
   0% {
-    right: calc(var(--small-height) + 2*  var(--marg));
+    right: var(--dist);
   }
   100% {
     right: 0;
@@ -61,12 +26,25 @@
 }
 @keyframes slideLeft {
   0% {
-    left: var(--small-height);
+    left: var(--dist);
+  }
+  100% {
+    left: 0;
   }
 }
-
-
-
+@keyframes growBig {
+  0% {
+    height: var(--norm-height);
+  }
+  80% {
+    box-shadow: none;
+  }
+  100% {
+    height: var(--big-height);
+    filter: brightness(120%);
+    /* box-shadow: 0 0 200px 3px rgb(248, 251, 49); */
+  }
+}
 @keyframes growNorm {
   0% {
     height: var(--small-height);
@@ -75,63 +53,88 @@
     height: var(--norm-height);
   }
 }
-@keyframes growBig {
+@keyframes shrinkBig {
   0% {
-    height: var(--norm-height);
-  }
-  100% {
     height: var(--big-height);
   }
-}
+  100% {
+    height: var(--norm-height);
+  }
 
-@keyFrames shrinkBig {
-  0% {
-    height: var(--big-height);
-  }
-  100% {
-    height: var(--norm-height);
-  }
 }
 @keyframes shrinkNorm {
   0% {
     height: var(--norm-height);
+
   }
   100% {
     height: var(--small-height);
+
   }
 }
-
-.growRightNorm {
-  animation: growNorm var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
-
-}
-.growLeftNorm {
-  animation: growNorm var(--a-dur) var(--t-func) forwards, slideLeft var(--a-dur) var(--t-func) forwards ;
-}
-.growRightBig {
-  animation: growBig var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
-}
-.growLeftBig {
-  animation: growBig var(--a-dur) var(--t-func) forwards, slideLeft var(--a-dur) var(--t-func)  forwards;
+.imgWrapper {
+  margin: 0 var(--marg);
+  height: var(--small-height) ;
+  z-index: -1;
+  width: min-content;
+  display: flex;
+  filter:  brightness(80%) ;
 }
 
-.shrinkRightNorm {
-  animation: shrinkNorm var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+
+.growBig {
+  z-index: 3;
+  animation: growBig var(--a-dur) forwards var(--t-func);
 }
-.shrinkLeftNorm {
-  animation: shrinkNorm var(--a-dur var(--t-func)) forwards, slideLeft var(--a-dur) var(--t-func) forwards;
+.growNorm {
+  animation: growNorm var(--a-dur) forwards var(--t-func);
+  z-index: 2;
 }
-.shrinkRightBig {
-  animation: shrinkBig var(--a-dur) var(--t-func) forwards, slideRight var(--a-dur) var(--t-func) forwards;
+.shrinkBig {
+  animation: shrinkBig var(--a-dur) forwards var(--t-func);
+
+  z-index: 2;
 }
-.shrinkLefttBig {
-  animation: shrinkBig var(--a-dur var(--t-func)) forwards, slideLeft var(--a-dur) var(--t-func) forwards;
+.shrinkNorm {
+  animation: shrinkNorm var(--a-dur) forwards var(--t-func);
+  z-index: 1;
+}
+
+.allImgWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, min-content);
+  grid-template-columns: 0 repeat(5, max-content) 0;
+  overflow: hidden;
+  align-items: center;
+  height: 70vh;
+  padding: 0 calc(-1 * var(--marg));
+}
+
+
+
+.imgWrapper > img {
+  height: inherit;
+  position: relative;
+
 }
 
 
 .slideRight {
-  animation: slideRight var(--a-dur) var(--t-func) forwards;
+  position: relative;
+  animation: slideRight var(--a-dur);
+
 }
 .slideLeft {
-  animation: slideRight var(--a-dur) var(--t-func) forwards;
+  position: relative;
+  animation: slideLeft var(--a-dur);
+
+}
+
+.justEnd {
+  justify-self: end;
+  z-index: -3;
+}
+.justStart {
+  justify-self: start;
+  z-index: -3;
 }

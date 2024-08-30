@@ -2,87 +2,75 @@ import { useState } from "react"
 
 export default function ImageSlider(props) {
 
-  const imgAmount = 5
   let {theme, images} = props
   let {
-    sliderWrapper,
-    displaySection,
-    sliderImg,
-    currentImg,
-    shrink,
-    slideRight,
-    growRight,
-    shrinkRight,
     allImgWrapper,
-    imageWrapper,
     wrap,
-    growRightNorm,
-    growLeftNorm,
-    growRightBig,
-    growLeftBig,
-    shrinkRightNorm,
-    shrinkLeftNorm,
-    shrinkRightBig,
-    shrinkLefttBig,
+    imgWrapper,
+    slideRight,
+    growBig,
+    growNorm,
+    shrinkBig,
+    shrinkBigNorm,
+    shrinkNorm,
+    slideLeft,
+    justEnd,
+    justStart
   }
   = theme
+
+  const imgAmount = 5
+
+  let rightGrows = ['', '', growNorm, growBig, shrinkBig, shrinkNorm, '']
+  let leftGrows = ['', shrinkNorm, shrinkBig, growBig, growNorm, '', '']
   const [imgSrcs, setImgSrcs] = useState(images)
-
-
-
-  const [imgClasses, setImgClasses] = useState(determineAnimation('right'))
-  function imgDivs(imgAmount, images) {
-
-  }
-
+  const [currentSlide, setCurrentSlide] = useState(slideRight)
+  const [grows, setGrows] = useState(rightGrows)
+  const [justify, setJustify] = useState([justEnd, '', '', '', '', '', justStart])
   function nextImg () {
     let list = imgSrcs
     let n = [...list.slice(-1), ...list.slice(0, -1)]
     setImgSrcs(n)
-    setImgClasses(determineAnimation('right'))
+    setCurrentSlide(slideRight)
+    // setJustify(justStart)
+
+    console.log(currentSlide)
+
+    setGrows(rightGrows)
+  }
+  function prevImg () {
+    let list = imgSrcs
+    let n = [...list.slice(1), list[0]]
+    setImgSrcs(n)
+    setCurrentSlide(slideLeft)
+    setGrows(leftGrows)
   }
 
-  function determineAnimation (direction) {
-    let classes = []
-    if (direction == 'right') {
+  function makeDivs (currentSlide, imgSrcs, grows) {
+    let list = []
+    let imgSrcIndex = [4, 0, 1, 2, 3, 4, 0]
+    console.log(grows)
+    for (let i = 0; i < imgAmount + 2; i++) {
 
-      classes = [slideRight, slideRight, growRightNorm, growRightBig, shrinkRightBig, shrinkRightNorm, slideRight]
+      let element =
+        <div key = {i} className={imgWrapper + ` ` + grows[i] + ` ` + justify[i]}>
+            <img className={currentSlide} src={imgSrcs[imgSrcIndex[i]]}></img>
+        </div>;
 
-      for (let i in classes) {
-        i = i + ` ` + imageWrapper
-      }
-      classes = classes.map(c => {return  c +  ` ` + imageWrapper })
+      list.push(element)
     }
-    return classes
+    return list
   }
+  console.log(currentSlide, grows)
+
 
   return (
     <div  className={wrap}>
-      <div key= {imgSrcs} className={allImgWrapper}>
-          <div className={imgClasses[0]}>
-            <img src={imgSrcs[4]} alt="" />
-          </div>
-          <div className={imgClasses[1]}>
-            <img src={imgSrcs[0]} alt="" />
-          </div>
-          <div className={imgClasses[2]}>
-            <img src={imgSrcs[1]} alt="" />
-          </div>
-          <div className={imgClasses[3]}>
-            <img src={imgSrcs[2]} alt="" />
-          </div>
-          <div className={imgClasses[4]}>
-            <img src={imgSrcs[3]}></img>
-          </div>
-        {/* </div> */}
-          <div className={imgClasses[5]}>
-            <img src={imgSrcs[4]} alt="" />
-          </div>
-          <div className={imgClasses[6]}>
-            <img src={imgSrcs[0]} alt="" />
-          </div>
+      <div key= {imgSrcs} className={allImgWrapper + ` ` }>
+          {makeDivs(currentSlide, imgSrcs, grows)}
       </div>
       <button onClick={nextImg}>dasda</button>
+      <button onClick={prevImg}>Prev</button>
     </div>
   )
 
