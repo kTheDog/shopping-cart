@@ -20,6 +20,7 @@ export default function Total({cart, data}) {
       let itemID = key
       let amount = cart[itemID]
       let price = data[itemID].price
+      if (amount == 0) {continue}
       let element = (
         <>
           <div className={styles.sheetAmount + ` ` + styles.sheetBorder}> x{amount}</div>

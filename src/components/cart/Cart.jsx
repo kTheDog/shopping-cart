@@ -2,9 +2,13 @@ import CartItem from "./CartItem";
 import propTypes from 'prop-types'
 import styles from '../css/Cart.module.css'
 import Total from "./Total";
+import { useEffect } from "react";
 export default function Cart({fetchState, cartState}) {
   const {cart, setCart} = cartState
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  },[])
   const {loading, error, data} = fetchState
   if (error) return <div>Network Error... Please refresh</div>
   if (loading) return <div>Loading...</div>;
@@ -23,6 +27,7 @@ export default function Cart({fetchState, cartState}) {
     }
     return list
   }
+
 
 
   return (
