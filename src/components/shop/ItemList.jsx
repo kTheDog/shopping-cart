@@ -43,7 +43,7 @@ export default function ItemList (props) {
   }
 
   return (
-    <div className={gridWrapper}>
+    <div className={gridWrapper} >
 
       <div className={shopGrid}>
         {list()}

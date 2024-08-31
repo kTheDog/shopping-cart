@@ -1,4 +1,6 @@
 import styles from '../css/Welcome.module.css'
+import slideStyles from '../css/ImageSlider.module.css'
+
 import ImageSlider from './ImageSlider'
 export default function Welcome(props) {
 
@@ -13,11 +15,11 @@ export default function Welcome(props) {
 
   return (
     <div>
-      Welcome,
       {/* <img src={data[0].image}></img> */}
 
-
-      <ImageSlider images = {images} theme={styles}></ImageSlider>
+      <div className={styles.fadeIn}>
+        <ImageSlider images = {images} theme={slideStyles}></ImageSlider>
+      </div>
     </div>
   )
 

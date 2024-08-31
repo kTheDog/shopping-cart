@@ -1,140 +1,16 @@
-.wrap {
-  --small-height: 15vh;
-  --norm-height: 30vh;
-  --big-height: 60vh;
-  --a-dur: 8s;
-  --t-func: cubic-bezier(0.19, 0.75, 1, 1);
-  --marg: -2vh;
-  --dist: calc(var(--small-height) + var(--marg) * 2);
-    width: min-content;
-    margin-left: 25vh;
-}
 
-/*
-Tech:
-apply growth animation  class to wrapper of imgs
-Apply sliding animation class to imgs inside wrapper
 
-*/
-@keyframes slideRight {
+
+@keyframes fadeIn {
   0% {
-    right: var(--dist);
+    opacity: 0;
   }
   100% {
-    right: 0;
+    opacity: 1;
   }
 }
-@keyframes slideLeft {
-  0% {
-    left: var(--dist);
-  }
-  100% {
-    left: 0;
-  }
-}
-@keyframes growBig {
-  0% {
-    height: var(--norm-height);
-  }
-  80% {
-    box-shadow: none;
-  }
-  100% {
-    height: var(--big-height);
-    filter: brightness(120%);
-    /* box-shadow: 0 0 200px 3px rgb(248, 251, 49); */
-  }
-}
-@keyframes growNorm {
-  0% {
-    height: var(--small-height);
-  }
-  100% {
-    height: var(--norm-height);
-  }
-}
-@keyframes shrinkBig {
-  0% {
-    height: var(--big-height);
-  }
-  100% {
-    height: var(--norm-height);
-  }
-
-}
-@keyframes shrinkNorm {
-  0% {
-    height: var(--norm-height);
-
-  }
-  100% {
-    height: var(--small-height);
-
-  }
-}
-.imgWrapper {
-  margin: 0 var(--marg);
-  height: var(--small-height) ;
-  z-index: -1;
-  width: min-content;
-  display: flex;
-  filter:  brightness(80%) ;
-}
 
 
-.growBig {
-  z-index: 3;
-  animation: growBig var(--a-dur) forwards var(--t-func);
-}
-.growNorm {
-  animation: growNorm var(--a-dur) forwards var(--t-func);
-  z-index: 2;
-}
-.shrinkBig {
-  animation: shrinkBig var(--a-dur) forwards var(--t-func);
-
-  z-index: 2;
-}
-.shrinkNorm {
-  animation: shrinkNorm var(--a-dur) forwards var(--t-func);
-  z-index: 1;
-}
-
-.allImgWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, min-content);
-  grid-template-columns: 0 repeat(5, max-content) 0;
-  overflow: hidden;
-  align-items: center;
-  height: 70vh;
-  padding: 0 calc(-1 * var(--marg));
-}
-
-
-
-.imgWrapper > img {
-  height: inherit;
-  position: relative;
-
-}
-
-
-.slideRight {
-  position: relative;
-  animation: slideRight var(--a-dur);
-
-}
-.slideLeft {
-  position: relative;
-  animation: slideLeft var(--a-dur);
-
-}
-
-.justEnd {
-  justify-self: end;
-  z-index: -3;
-}
-.justStart {
-  justify-self: start;
-  z-index: -3;
+.fadeIn {
+  animation: fadeIn 3s;
 }

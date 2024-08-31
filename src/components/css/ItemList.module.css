@@ -1,5 +1,19 @@
+@keyframes foldDown {
+  0% {
+    top: -5%;
+    opacity: 0.3;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
 .gridWrapper {
   padding: 5vh 15vh;
+  transform-origin: top;
+  position: relative;
+  animation: foldDown 1s;
 }
 .pagesWrapper {
   height: 5vh;

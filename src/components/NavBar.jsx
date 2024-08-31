@@ -4,17 +4,20 @@ import homeIcon from '../assets/home.svg'
 import cartIcon from '../assets/cart.svg'
 import shopIcon from '../assets/shop.svg'
 import cartTest from '../assets/cartTest.svg'
-export default function NavBar () {
 
+let copy = styles
+export default function NavBar ({theme}) {
+  console.log(theme)
+  theme = styles && theme
+  if (!theme.navBar) {
+    theme = styles
+  }
   const {pageName} = useParams()
-  console.log(pageName)
-  let {navButton, selected, navBar, test} = styles
+  let {navButton, selected, navBar, test} = theme
 
   let classes = {home: navButton, shop: navButton, cart: navButton}
 
   if (pageName) {classes[pageName] = selected} else {classes.home = selected}
-
-
   return (
     <div id="nav-bar" className={navBar}>
       <ul>
