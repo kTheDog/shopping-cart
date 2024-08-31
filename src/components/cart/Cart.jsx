@@ -1,6 +1,7 @@
 import CartItem from "./CartItem";
 import propTypes from 'prop-types'
-
+import styles from '../css/Cart.module.css'
+import Total from "./Total";
 export default function Cart({fetchState, cartState}) {
   const {cart, setCart} = cartState
 
@@ -10,19 +11,26 @@ export default function Cart({fetchState, cartState}) {
 
   function CartList () {
     let list = []
+    let i = 0
     for (let itemID in cart) {
+      console.log(cartState)
+      if (cart[itemID] == 0) {continue}
+
       console.log(itemID)
-      let element = <CartItem key={itemID}data={data[itemID]} cartState={cartState}></CartItem>
+      let element = <CartItem delay={i} key={itemID}data={data[itemID]} cartState={cartState}></CartItem>
       list.push(element)
+      i++;
     }
     return list
   }
 
 
   return (
-    <div id="cart">
-      Cart
-      {CartList()}
+    <div className={styles.cartWrapper}>
+      <div class={styles.itemList}>
+        {CartList()}
+      </div>
+      <Total data={data} cart={cart}></Total>
     </div>
   )
 }

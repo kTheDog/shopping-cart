@@ -9,7 +9,7 @@ let copy = styles
 export default function NavBar ({theme}) {
   console.log(theme)
   theme = styles && theme
-  if (!theme.navBar) {
+  if (!theme) {
     theme = styles
   }
   const {pageName} = useParams()

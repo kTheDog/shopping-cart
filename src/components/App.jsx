@@ -7,7 +7,6 @@ import NavBar from "./NavBar"
 import Welcome from "./welcome/Welcome"
 import styles from "./css/App.module.css"
 import useGetWelcomeImages from "./welcome/useGetWelcomeImages"
-import navBarTheme from "./css/NavBarHome.module.css"
 
 export default function App() {
 
@@ -30,7 +29,7 @@ export default function App() {
   return (
 
     <div className={styles.app}>
-      <NavBar theme={pageName ? '' : navBarTheme}></NavBar>
+      <NavBar></NavBar>
       {bodyComponent()}
     </div>
 
