@@ -79,6 +79,8 @@
 
 .itemTitle {
   grid-area: title;
+  color: rgb(25, 27, 45);
+
 }
 .itemImage {
   height: 68vh;
@@ -133,7 +135,7 @@
 }
 
 .stars {
-  display: block;
+  /* display: block; */
   background-color: rgb(138, 177, 115);
   font-size: 1.7rem;
   font-weight: bold;
@@ -284,4 +286,18 @@
   20% {
     transform: rotateZ(0) scale(1);
   }
+}
+
+
+.itemPrice {
+  display: flex;
+  align-items: center;
+  background-color: rgb(75, 100, 96);
+  padding: 1vh 4vh;
+  color: white;
+  border-radius: 3vh;
+  box-sizing: border-box;
+  border: 1px solid rgb(246, 255, 231);
+  box-shadow: 6px 6px 6px 2px rgb(141, 142, 147);
+  font-size: 2rem;
 }

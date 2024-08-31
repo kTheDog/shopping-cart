@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 export default function ItemPage (props) {
   const {category, description, id, price, rating, title, images} = props.data
   const {
+          itemPrice,
           itemImage,
           imgWrapper,
           itemPageWrapper,
@@ -34,10 +35,14 @@ export default function ItemPage (props) {
       </div>
       <div className={buySection}>
         <div className={tagsWrapper}>
+          <div className={itemPrice}>
+              <span>{price}$</span>
+          </div>
           <div className={stars}>
             <span>{rating}</span>
             <img src={starIcon} alt="" />
           </div>
+
           <div className={stock}>
             <img src={stockIcon} alt="" />
             <span>In stock</span>
@@ -48,6 +53,7 @@ export default function ItemPage (props) {
           <IncrementBuy theme = {styles} id = {id} cartState={props.cartState}></IncrementBuy>
         </div>
       </div>
+
     </div>
   )
 }
