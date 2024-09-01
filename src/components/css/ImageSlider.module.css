@@ -2,7 +2,7 @@
   --small-height: 15vh;
   --norm-height: 25vh;
   --big-height: 50vh;
-  --a-dur: 1s;
+  --a-dur: 0.6s;
   --t-func: cubic-bezier(0.19, 0.75, 1, 1);
   --marg: -2vh;
   --dist: calc(var(--small-height) + var(--marg) * 2);

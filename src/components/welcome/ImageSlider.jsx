@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import arrowLeft from '../../assets/arrow1.svg'
 import arrowRight from '../../assets/arrow2.svg'
 
@@ -34,6 +34,9 @@ export default function ImageSlider(props) {
   const [grows, setGrows] = useState(rightGrows)
   const [justify, setJustify] = useState([justEnd, '', '', '', '', '', justStart])
   const [wrapClass, setWrapClass] = useState(imgWrapWrapper)
+
+
+
   function nextImg () {
     let list = imgSrcs
     let n = [...list.slice(-1), ...list.slice(0, -1)]
@@ -80,10 +83,10 @@ export default function ImageSlider(props) {
       </div>
 
       <div className={buttonsWrapper}>
-        <button class={btn} onClick={prevImg}>
+        <button className={btn} onClick={nextImg}>
           <img src={arrowLeft} alt="" />
         </button>
-        <button class={btn} onClick={nextImg}>
+        <button className={btn} onClick={prevImg}>
           <img src={arrowRight} alt="" />
         </button>
       </div>
